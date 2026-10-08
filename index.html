@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Buddy – Student Productivity Hub</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind Custom Configuration -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen selection:bg-indigo-500 selection:text-white">
+
+  
+  <!-- 1. NAVBAR   -->
+  
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md shadow-indigo-200 group-hover:scale-105 transition-transform duration-200">
+            <!-- Graduation Cap Icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Study Buddy</span>
+            <span class="hidden sm:inline-block text-xs text-slate-400 font-medium ml-1">| Hub</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <a href="#home" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-100 transition-colors">Home</a>
+          <a href="#features" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-100 transition-colors">Features</a>
+          <a href="#planner" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-100 transition-colors">Planner</a>
+          <a href="#timer" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-100 transition-colors">Focus Timer</a>
+          <a href="#motivation" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-100 transition-colors">Motivation</a>
+          <a href="#about" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 rounded-lg hover:bg-slate-100 transition-colors">About</a>
+          <a href="#planner" class="ml-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm hover:shadow transition-all">Start Task</a>
+        </nav>
+
+        <!-- Mobile Hamburger Button -->
+        <div class="flex md:hidden">
+          <button id="mobileMenuBtn" type="button" aria-label="Toggle Navigation Menu" class="p-2 rounded-lg text-slate-600 hover:text-indigo-600 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <!-- Icon when menu is closed (hamburger) -->
+            <svg id="hamburgerIcon" class="h-6 w-6 block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <!-- Icon when menu is open (close X) -->
+            <svg id="closeIcon" class="h-6 w-6 hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white/95 px-4 pt-3 pb-5 space-y-1 shadow-lg">
+      <a href="#home" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Home</a>
+      <a href="#features" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Features</a>
+      <a href="#planner" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Planner</a>
+      <a href="#timer" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Focus Timer</a>
+      <a href="#motivation" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Motivation</a>
+      <a href="#about" class="mobile-nav-link block px-3 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">About</a>
+    </div>
+  </header>
+
+
+  <!-- 2. HERO SECTION  -->
+  <section id="home" class="relative overflow-hidden pt-12 pb-16 md:pt-20 md:pb-24 bg-gradient-to-b from-indigo-50/60 via-purple-50/30 to-slate-50">
+    <!-- Subtle background blur circles -->
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-32 right-10 w-72 h-72 bg-purple-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-100 text-indigo-700 text-xs font-semibold uppercase tracking-wider mb-6">
+            <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+            Web Dev Lab Project &bull; 2026
+          </div>
+          
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            Study Smarter, <br class="hidden sm:inline">
+            <span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-800 bg-clip-text text-transparent">Not Harder</span>
+          </h1>
+
+          <p class="mt-5 text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Study Buddy helps students organize study tasks, maintain deep focus with timed sessions, and stay motivated every single day. Minimal, efficient, and student-first.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#planner" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              Start Studying
+            </a>
+            
+            <a href="#features" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-semibold border border-slate-200 shadow-sm hover:border-slate-300 hover:-translate-y-0.5 transition-all duration-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Explore Features
+            </a>
+          </div>
+
+          <!-- Quick Stats / Badges -->
+          <div class="mt-10 pt-6 border-t border-slate-200/80 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs text-slate-500 font-medium">
+            <div class="flex items-center gap-2">
+              <span class="text-indigo-600 font-bold">✓</span> 100% Client-Side
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-indigo-600 font-bold">✓</span> LocalStorage Autosave
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-indigo-600 font-bold">✓</span> Zero Frameworks
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero CSS & SVG Visual Illustration -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="relative w-full max-w-md">
+            
+            <!-- Outer Gradient Glow Card -->
+            <div class="relative rounded-2xl bg-gradient-to-tr from-indigo-500 to-purple-600 p-1 shadow-2xl shadow-indigo-200">
+              <div class="bg-white rounded-[14px] p-6 space-y-5">
+                
+                <!-- Illustration Header Bar -->
+                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+                    <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Active Workspace</span>
+                </div>
+
+                <!-- Visual Card Mockup 1: Study Progress -->
+                <div class="bg-indigo-50/70 border border-indigo-100 rounded-xl p-4 flex items-center gap-4">
+                  <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+                    📚
+                  </div>
+                  <div class="flex-1">
+                    <p class="text-xs font-bold text-indigo-900">Data Structures &amp; Algorithms</p>
+                    <p class="text-xs text-slate-500">Unit 3: Binary Search Trees</p>
+                    <div class="w-full bg-indigo-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                      <div class="bg-indigo-600 h-full rounded-full w-4/5"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Visual Card Mockup 2: Focus Session -->
+                <div class="bg-purple-50/70 border border-purple-100 rounded-xl p-4 flex items-center justify-between">
+                  <div class="flex items-center gap-3">
+                    <span class="text-2xl">⏱️</span>
+                    <div>
+                      <p class="text-xs font-bold text-purple-900">Pomodoro Focus</p>
+                      <p class="text-xs text-slate-500">Session 2 of 4</p>
+                    </div>
+                  </div>
+                  <span class="font-mono text-sm font-bold text-purple-700 bg-purple-100 px-2.5 py-1 rounded-md">25:00</span>
+                </div>
+
+                <!-- Visual Card Mockup 3: Motivational Quote Pill -->
+                <div class="bg-amber-50/70 border border-amber-100 rounded-xl p-3 flex items-center gap-3 text-xs text-amber-900">
+                  <span class="text-lg">💡</span>
+                  <p class="italic">"Consistency turns small steps into huge results."</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Decorative floating badge -->
+            <div class="absolute -bottom-4 -left-4 bg-white border border-slate-200 shadow-xl rounded-xl px-4 py-2.5 flex items-center gap-3 hidden sm:flex">
+              <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+              <p class="text-xs font-semibold text-slate-700">Ready for Exam Prep 🎯</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 3. FEATURES SECTION                                       -->
+  <!-- ========================================================= -->
+  <section id="features" class="py-16 md:py-24 bg-white border-y border-slate-200/80">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-600">Core Capabilities</h2>
+        <p class="mt-2 text-3xl font-extrabold text-slate-900 sm:text-4xl">Everything a Student Needs</p>
+        <p class="mt-3 text-slate-600 text-sm sm:text-base">Designed to eliminate distractions and provide a streamlined study workspace for exam prep and homework.</p>
+      </div>
+
+      <!-- Feature Cards Grid (4 Cards) -->
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Card 1: Study Planner -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+            📚
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">Study Planner</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Organize study tasks by subject, set targets, and keep your daily syllabus on track effortlessly.
+          </p>
+        </div>
+
+        <!-- Card 2: Focus Timer -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-purple-600 group-hover:text-white transition-all duration-300">
+            ⏱️
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-purple-600 transition-colors">Focus Timer</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Pomodoro-style 25-minute intervals to maintain high concentration and prevent mental fatigue.
+          </p>
+        </div>
+
+        <!-- Card 3: Task Tracker -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300">
+            ✅
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition-colors">Task Tracker</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Dynamic remaining-tasks counter and persistent local storage that remembers your progress on reload.
+          </p>
+        </div>
+
+        <!-- Card 4: Daily Motivation -->
+        <div class="bg-slate-50 border border-slate-200/80 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+          <div class="w-14 h-14 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 group-hover:bg-amber-600 group-hover:text-white transition-all duration-300">
+            💡
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 group-hover:text-amber-600 transition-colors">Daily Motivation</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">
+            Instant curated motivational quotes to boost your morale when long study sessions get overwhelming.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 4. INTERACTIVE STUDY PLANNER (MAIN JS SECTION)            -->
+  <!-- ========================================================= -->
+  <section id="planner" class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-700 bg-indigo-100 rounded-full">Interactive Tool</span>
+        <h2 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">Interactive Study Planner</h2>
+        <p class="mt-2 text-slate-600 text-sm sm:text-base">Add your revision topics, assign subjects, mark completed items, and keep your tasks saved in your browser.</p>
+      </div>
+
+      <!-- Planner Card -->
+      <div class="bg-white rounded-2xl shadow-md border border-slate-200 p-6 sm:p-8">
+        
+        <!-- Planner Header & Dynamic Counter -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-slate-200 gap-4">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900">My Study Tasks</h3>
+            <p class="text-xs text-slate-500 mt-0.5">Stored locally in your browser (LocalStorage)</p>
+          </div>
+          
+          <!-- Dynamic Task Counter Badge -->
+          <div id="taskCounterBadge" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-sm font-semibold self-start sm:self-auto">
+            <span class="w-2.5 h-2.5 rounded-full bg-indigo-600"></span>
+            <span id="taskCounterText">0 Tasks Remaining</span>
+          </div>
+        </div>
+
+        <!-- Form Validation Message (Hidden by default) -->
+        <div id="plannerAlert" class="hidden mt-4 p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-medium flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <span id="plannerAlertMsg">Please enter a valid study task before adding.</span>
+        </div>
+
+        <!-- Task Input Form -->
+        <form id="taskForm" class="mt-6 grid grid-cols-1 sm:grid-cols-12 gap-3" onsubmit="event.preventDefault();">
+          
+          <!-- Task Name Input -->
+          <div class="sm:col-span-7">
+            <label for="taskInput" class="block text-xs font-semibold text-slate-700 mb-1">Task Description</label>
+            <input 
+              type="text" 
+              id="taskInput" 
+              placeholder="e.g. Read Operating Systems Chapter 4..." 
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all placeholder:text-slate-400"
+              autocomplete="off"
+            >
+          </div>
+
+          <!-- Subject Dropdown -->
+          <div class="sm:col-span-3">
+            <label for="subjectSelect" class="block text-xs font-semibold text-slate-700 mb-1">Subject</label>
+            <select 
+              id="subjectSelect" 
+              class="w-full px-3 py-2.5 text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all font-medium text-slate-700 cursor-pointer"
+            >
+              <option value="Computer Science">Computer Science</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Web Development">Web Development</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="General Studies">General Studies</option>
+            </select>
+          </div>
+
+          <!-- Add Task Button -->
+          <div class="sm:col-span-2 flex items-end">
+            <button 
+              type="button" 
+              id="addTaskBtn" 
+              class="w-full py-2.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm hover:shadow transition-all duration-200 flex items-center justify-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+              </svg>
+              <span>Add</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Tasks Filter / Control Row -->
+        <div class="mt-8 flex items-center justify-between text-xs text-slate-500 pb-2 border-b border-slate-100">
+          <span class="font-semibold text-slate-600 uppercase tracking-wider">Task List</span>
+          <button id="clearCompletedBtn" type="button" class="hover:text-red-600 transition-colors font-medium">
+            Clear Completed
+          </button>
+        </div>
+
+        <!-- Task List Container -->
+        <div id="taskList" class="mt-4 space-y-3 min-h-[140px]">
+          <!-- Dynamic task items injected via JavaScript -->
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 5. FOCUS TIMER (POMODORO)                                 -->
+  <!-- ========================================================= -->
+  <section id="timer" class="py-16 md:py-24 bg-white border-y border-slate-200/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-purple-700 bg-purple-100 rounded-full">Productivity Technique</span>
+        <h2 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">Focus Timer</h2>
+        <p class="mt-2 text-slate-600 text-sm sm:text-base">Use the Pomodoro technique to study in 25-minute undistracted blocks followed by short restful breaks.</p>
+      </div>
+
+      <!-- Timer Card -->
+      <div class="max-w-md mx-auto bg-gradient-to-b from-slate-50 to-white rounded-3xl border border-slate-200 p-8 shadow-xl text-center relative overflow-hidden">
+        
+        <!-- Timer Status Notification (Shown at 00:00) -->
+        <div id="timerAlert" class="hidden mb-4 p-3.5 rounded-xl bg-emerald-100 border border-emerald-300 text-emerald-800 text-sm font-semibold animate-bounce">
+          🎉 Great job! Take a short break.
+        </div>
+
+        <!-- Current Session Label -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-xs font-bold tracking-wide uppercase mb-6">
+          <span id="timerStatusDot" class="w-2 h-2 rounded-full bg-purple-600"></span>
+          <span id="timerStatusText">Ready to Focus</span>
+        </div>
+
+        <!-- Digital Timer Display -->
+        <div class="py-4">
+          <span id="timerDisplay" class="font-mono text-6xl sm:text-7xl font-extrabold tracking-tight text-slate-900 drop-shadow-sm select-none">
+            25:00
+          </span>
+          <p class="mt-2 text-xs font-medium text-slate-400 uppercase tracking-widest">Standard Pomodoro Interval</p>
+        </div>
+
+        <!-- Timer Controls (Start, Pause, Reset) -->
+        <div class="mt-8 flex items-center justify-center gap-3">
+          <!-- Start Button -->
+          <button 
+            id="startTimerBtn" 
+            type="button" 
+            class="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+            </svg>
+            <span>Start</span>
+          </button>
+
+          <!-- Pause Button -->
+          <button 
+            id="pauseTimerBtn" 
+            type="button" 
+            class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold shadow-md shadow-amber-200 hover:shadow-amber-300 hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+            </svg>
+            <span>Pause</span>
+          </button>
+
+          <!-- Reset Button -->
+          <button 
+            id="resetTimerBtn" 
+            type="button" 
+            class="px-6 py-3 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+            </svg>
+            <span>Reset</span>
+          </button>
+        </div>
+
+        <!-- Quick Mode Presets -->
+        <div class="mt-8 pt-4 border-t border-slate-200/80 flex items-center justify-center gap-2">
+          <button id="set25MinBtn" type="button" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors">
+            25m Focus
+          </button>
+          <button id="set5MinBtn" type="button" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors">
+            5m Short Break
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 6. DAILY MOTIVATION                                       -->
+  <!-- ========================================================= -->
+  <section id="motivation" class="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-indigo-50/50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber-700 bg-amber-100 rounded-full">Daily Spark</span>
+        <h2 class="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">Daily Motivation</h2>
+        <p class="mt-2 text-slate-600 text-sm sm:text-base">A little encouragement when studying gets challenging.</p>
+      </div>
+
+      <!-- Quote Card -->
+      <div class="bg-white rounded-3xl shadow-xl border border-slate-200/80 p-8 sm:p-12 text-center relative overflow-hidden">
+        
+        <!-- Large Quotation Icon Decorative -->
+        <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center mb-6 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+        </div>
+
+        <!-- Quote Text Container -->
+        <blockquote class="max-w-2xl mx-auto">
+          <p id="quoteText" class="text-xl sm:text-2xl font-semibold text-slate-800 leading-relaxed transition-all duration-300">
+            "You don't have to be extreme, just consistent."
+          </p>
+          <footer class="mt-4">
+            <cite id="quoteAuthor" class="text-sm font-bold text-indigo-600 tracking-wide not-italic">
+              — Anonymous
+            </cite>
+          </footer>
+        </blockquote>
+
+        <!-- New Quote Button -->
+        <div class="mt-8">
+          <button 
+            id="newQuoteBtn" 
+            type="button" 
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold shadow-md shadow-amber-200 hover:shadow-amber-300 hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>New Quote</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 7. ABOUT SECTION                                          -->
+  <!-- ========================================================= -->
+  <section id="about" class="py-16 md:py-20 bg-white border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 rounded-3xl border border-indigo-100 p-8 sm:p-12 shadow-sm">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <div class="md:col-span-8">
+            <span class="text-xs font-bold uppercase tracking-wider text-indigo-600">About the Project</span>
+            <h2 class="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">What is Study Buddy?</h2>
+            
+            <p class="mt-4 text-base text-slate-600 leading-relaxed">
+              Study Buddy is a simple productivity tool designed for students to organize study tasks, maintain focus and build consistent study habits.
+            </p>
+            
+            <p class="mt-3 text-sm text-slate-500 leading-relaxed">
+              Built using standard Web Development standards (HTML5, Tailwind CSS, and pure Vanilla JavaScript) without dependencies on external heavy JS frameworks. It proves how modern web experiences can be fast, lightweight, and completely privacy-respecting by storing data locally in the browser.
+            </p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 shadow-sm">HTML5 Semantic Structure</span>
+              <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 shadow-sm">Tailwind CSS Utility Design</span>
+              <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 shadow-sm">Vanilla JS DOM Manipulation</span>
+              <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-semibold text-slate-700 shadow-sm">HTML5 LocalStorage API</span>
+            </div>
+          </div>
+
+          <div class="md:col-span-4 flex justify-center">
+            <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm text-center w-full max-w-xs">
+              <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center mx-auto mb-3 font-bold text-xl">
+                🎓
+              </div>
+              <h4 class="font-bold text-slate-900 text-base">Web Development Lab</h4>
+              <p class="text-xs text-slate-500 mt-1">Computer Science &amp; Engineering</p>
+              <div class="mt-4 pt-4 border-t border-slate-100 text-[11px] font-medium text-emerald-600">
+                Verified Lab Project &bull; 2026
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================= -->
+  <!-- 8. FOOTER                                                 -->
+  <!-- ========================================================= -->
+  <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800">
+        
+        <!-- Footer Logo -->
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-md">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-extrabold text-xl text-white tracking-tight">Study Buddy</span>
+            <p class="text-xs text-slate-400">Student Productivity Hub</p>
+          </div>
+        </div>
+
+        <!-- Navigation Links in Footer -->
+        <nav class="flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+          <a href="#home" class="hover:text-white transition-colors">Home</a>
+          <a href="#features" class="hover:text-white transition-colors">Features</a>
+          <a href="#planner" class="hover:text-white transition-colors">Planner</a>
+          <a href="#timer" class="hover:text-white transition-colors">Focus Timer</a>
+          <a href="#motivation" class="hover:text-white transition-colors">Motivation</a>
+          <a href="#about" class="hover:text-white transition-colors">About</a>
+        </nav>
+
+        <!-- Social / Contact Icons -->
+        <div class="flex items-center space-x-3 text-slate-400">
+          <!-- GitHub Icon -->
+          <a href="#" aria-label="GitHub Profile" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-colors">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <!-- LinkedIn Icon -->
+          <a href="#" aria-label="LinkedIn Profile" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-colors">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+          <!-- Email / Mail Icon -->
+          <a href="#" aria-label="Email Contact" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-indigo-600 hover:text-white flex items-center justify-center transition-colors">
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Copyright & Lab Credit -->
+      <div class="mt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        <p>&copy; 2026 Study Buddy. All rights reserved.</p>
+        <p class="font-medium text-slate-400">Made for Web Development Lab</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ========================================================= -->
+  <!-- VANILLA JAVASCRIPT LOGIC                                  -->
+  <!-- ========================================================= -->
+  <script>
+    /*
+      =============================================================
+      STUDY BUDDY – CLIENT-SIDE JAVASCRIPT
+      College Web Development Lab Project
+      
+      Sections Covered:
+      1. Mobile Hamburger Menu Toggle
+      2. Motivational Quotes Generator
+      3. Pomodoro Focus Timer Logic
+      4. Interactive Study Planner (CRUD + LocalStorage + Validation)
+      =============================================================
+    */
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // -----------------------------------------------------------
+      // 1. MOBILE NAVBAR TOGGLE
+      // -----------------------------------------------------------
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      // Toggle mobile menu visibility and icon
+      mobileMenuBtn.addEventListener('click', () => {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden');
+          hamburgerIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+        } else {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        }
+      });
+
+      // Auto-close menu when any navigation link is clicked
+      mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+        });
+      });
+
+
+      // -----------------------------------------------------------
+      // 2. DAILY MOTIVATIONAL QUOTES
+      // -----------------------------------------------------------
+      const quotes = [
+        { text: "You don't have to be extreme, just consistent.", author: "Anonymous" },
+        { text: "The secret to getting ahead is getting started.", author: "Mark Twain" },
+        { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+        { text: "Small daily improvements over time lead to stunning results.", author: "Robin Sharma" },
+        { text: "Focus on progress, not perfection.", author: "Bill Phillips" },
+        { text: "Action is the foundational key to all success.", author: "Pablo Picasso" },
+        { text: "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.", author: "Malcolm X" },
+        { text: "Push yourself, because no one else is going to do it for you.", author: "College Wisdom" }
+      ];
+
+      const quoteText = document.getElementById('quoteText');
+      const quoteAuthor = document.getElementById('quoteAuthor');
+      const newQuoteBtn = document.getElementById('newQuoteBtn');
+
+      let currentQuoteIndex = 0;
+
+      function displayRandomQuote() {
+        // Pick a random quote distinct from the currently shown one
+        let newIndex;
+        do {
+          newIndex = Math.floor(Math.random() * quotes.length);
+        } while (newIndex === currentQuoteIndex && quotes.length > 1);
+
+        currentQuoteIndex = newIndex;
+        const selected = quotes[currentQuoteIndex];
+
+        // Smooth text transition
+        quoteText.style.opacity = '0';
+        quoteAuthor.style.opacity = '0';
+
+        setTimeout(() => {
+          quoteText.textContent = `"${selected.text}"`;
+          quoteAuthor.textContent = `— ${selected.author}`;
+          quoteText.style.opacity = '1';
+          quoteAuthor.style.opacity = '1';
+        }, 150);
+      }
+
+      newQuoteBtn.addEventListener('click', displayRandomQuote);
+
+
+      // -----------------------------------------------------------
+      // 3. POMODORO FOCUS TIMER
+      // -----------------------------------------------------------
+      const timerDisplay = document.getElementById('timerDisplay');
+      const startTimerBtn = document.getElementById('startTimerBtn');
+      const pauseTimerBtn = document.getElementById('pauseTimerBtn');
+      const resetTimerBtn = document.getElementById('resetTimerBtn');
+      const set25MinBtn = document.getElementById('set25MinBtn');
+      const set5MinBtn = document.getElementById('set5MinBtn');
+      const timerAlert = document.getElementById('timerAlert');
+      const timerStatusText = document.getElementById('timerStatusText');
+      const timerStatusDot = document.getElementById('timerStatusDot');
+
+      let initialDuration = 25 * 60; // 25 minutes in seconds
+      let timeLeft = initialDuration;
+      let timerInterval = null;
+      let isTimerRunning = false;
+
+      // Format seconds into MM:SS format
+      function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        const formattedMins = mins < 10 ? `0${mins}` : mins;
+        const formattedSecs = secs < 10 ? `0${secs}` : secs;
+        return `${formattedMins}:${formattedSecs}`;
+      }
+
+      // Update the timer UI
+      function updateTimerDisplay() {
+        timerDisplay.textContent = formatTime(timeLeft);
+      }
+
+      // Set timer status badge
+      function updateTimerStatus(text, colorClass) {
+        timerStatusText.textContent = text;
+        timerStatusDot.className = `w-2 h-2 rounded-full ${colorClass}`;
+      }
+
+      // Start the countdown
+      function startTimer() {
+        if (isTimerRunning) return; // Prevent multiple intervals
+
+        timerAlert.classList.add('hidden'); // Hide completion message
+        isTimerRunning = true;
+        updateTimerStatus("Focusing...", "bg-emerald-500 animate-pulse");
+
+        timerInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+          } else {
+            // Timer finished
+            clearInterval(timerInterval);
+            isTimerRunning = false;
+            updateTimerStatus("Session Finished!", "bg-emerald-500");
+            timerAlert.classList.remove('hidden'); // Show notification message
+          }
+        }, 1000);
+      }
+
+      // Pause the countdown
+      function pauseTimer() {
+        if (!isTimerRunning) return;
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        updateTimerStatus("Paused", "bg-amber-500");
+      }
+
+      // Reset the countdown
+      function resetTimer() {
+        clearInterval(timerInterval);
+        isTimerRunning = false;
+        timeLeft = initialDuration;
+        updateTimerDisplay();
+        timerAlert.classList.add('hidden');
+        updateTimerStatus("Ready to Focus", "bg-purple-600");
+      }
+
+      // Mode Presets
+      set25MinBtn.addEventListener('click', () => {
+        initialDuration = 25 * 60;
+        resetTimer();
+        set25MinBtn.className = "text-xs font-semibold px-3 py-1.5 rounded-lg bg-indigo-100 text-indigo-700 transition-colors";
+        set5MinBtn.className = "text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors";
+      });
+
+      set5MinBtn.addEventListener('click', () => {
+        initialDuration = 5 * 60;
+        resetTimer();
+        set5MinBtn.className = "text-xs font-semibold px-3 py-1.5 rounded-lg bg-indigo-100 text-indigo-700 transition-colors";
+        set25MinBtn.className = "text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors";
+      });
+
+      startTimerBtn.addEventListener('click', startTimer);
+      pauseTimerBtn.addEventListener('click', pauseTimer);
+      resetTimerBtn.addEventListener('click', resetTimer);
+
+
+      // -----------------------------------------------------------
+      // 4. INTERACTIVE STUDY PLANNER
+      // -----------------------------------------------------------
+      const taskInput = document.getElementById('taskInput');
+      const subjectSelect = document.getElementById('subjectSelect');
+      const addTaskBtn = document.getElementById('addTaskBtn');
+      const taskList = document.getElementById('taskList');
+      const taskCounterText = document.getElementById('taskCounterText');
+      const plannerAlert = document.getElementById('plannerAlert');
+      const plannerAlertMsg = document.getElementById('plannerAlertMsg');
+      const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+
+      const STORAGE_KEY = 'study_buddy_tasks_v1';
+
+      // Load tasks from LocalStorage or initialize with default sample tasks
+      function getStoredTasks() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            return JSON.parse(stored);
+          }
+        } catch (e) {
+          console.error("Error reading LocalStorage", e);
+        }
+        // Default starter tasks for a realistic first impression
+        return [
+          { id: '1', text: 'Revise Binary Search Trees & AVL rotations', subject: 'Computer Science', completed: false },
+          { id: '2', text: 'Solve Linear Algebra Chapter 3 problems', subject: 'Mathematics', completed: true },
+          { id: '3', text: 'Build responsive navbar with Tailwind CDN', subject: 'Web Development', completed: false }
+        ];
+      }
+
+      let tasks = getStoredTasks();
+
+      // Save tasks array back to LocalStorage
+      function saveTasks() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+        } catch (e) {
+          console.error("Error saving to LocalStorage", e);
+        }
+      }
+
+      // Subject badge color helper
+      function getSubjectBadgeClasses(subject) {
+        switch (subject) {
+          case 'Computer Science':
+            return 'bg-blue-50 text-blue-700 border-blue-200';
+          case 'Mathematics':
+            return 'bg-purple-50 text-purple-700 border-purple-200';
+          case 'Web Development':
+            return 'bg-emerald-50 text-emerald-700 border-emerald-200';
+          case 'Physics':
+            return 'bg-amber-50 text-amber-700 border-amber-200';
+          case 'Chemistry':
+            return 'bg-rose-50 text-rose-700 border-rose-200';
+          default:
+            return 'bg-slate-100 text-slate-700 border-slate-200';
+        }
+      }
+
+      // Show temporary alert for form validation
+      function showFormAlert(message) {
+        plannerAlertMsg.textContent = message;
+        plannerAlert.classList.remove('hidden');
+        setTimeout(() => {
+          plannerAlert.classList.add('hidden');
+        }, 3000);
+      }
+
+      // Update remaining tasks counter
+      function updateTaskCounter() {
+        const remainingCount = tasks.filter(t => !t.completed).length;
+        if (remainingCount === 0) {
+          taskCounterText.textContent = tasks.length === 0 ? "No Tasks Added" : "All Tasks Completed! 🎉";
+        } else if (remainingCount === 1) {
+          taskCounterText.textContent = "1 Task Remaining";
+        } else {
+          taskCounterText.textContent = `${remainingCount} Tasks Remaining`;
+        }
+      }
+
+      // Render tasks list in the DOM
+      function renderTasks() {
+        taskList.innerHTML = '';
+
+        if (tasks.length === 0) {
+          taskList.innerHTML = `
+            <div class="text-center py-10 px-4 border-2 border-dashed border-slate-200 rounded-xl bg-slate-50/50">
+              <span class="text-3xl">📝</span>
+              <p class="mt-2 text-sm font-semibold text-slate-700">No study tasks right now</p>
+              <p class="text-xs text-slate-400 mt-1">Add a new task above to stay on top of your coursework!</p>
+            </div>
+          `;
+          updateTaskCounter();
+          return;
+        }
+
+        tasks.forEach(task => {
+          const taskItem = document.createElement('div');
+          taskItem.className = `group flex items-center justify-between p-4 rounded-xl border transition-all duration-200 ${
+            task.completed 
+              ? 'bg-slate-50/70 border-slate-200 opacity-75' 
+              : 'bg-white border-slate-200 shadow-sm hover:border-indigo-200 hover:shadow-md'
+          }`;
+
+          const subjectBadgeClass = getSubjectBadgeClasses(task.subject);
+
+          taskItem.innerHTML = `
+            <div class="flex items-center gap-3.5 flex-1 min-w-0 pr-3">
+              <!-- Custom Checkbox Button -->
+              <button 
+                type="button" 
+                data-id="${task.id}" 
+                class="toggle-task-btn shrink-0 w-6 h-6 rounded-lg border flex items-center justify-center transition-all ${
+                  task.completed 
+                    ? 'bg-emerald-500 border-emerald-500 text-white' 
+                    : 'border-slate-300 hover:border-indigo-500 bg-white'
+                }"
+                title="${task.completed ? 'Mark as Incomplete' : 'Mark as Completed'}"
+              >
+                ${
+                  task.completed 
+                    ? `<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>` 
+                    : ''
+                }
+              </button>
+
+              <!-- Task Text and Subject Badge -->
+              <div class="min-w-0">
+                <p class="text-sm font-medium truncate ${
+                  task.completed 
+                    ? 'line-through text-slate-400' 
+                    : 'text-slate-800'
+                }">
+                  ${task.text}
+                </p>
+                <div class="flex items-center gap-2 mt-1">
+                  <span class="inline-block text-[11px] font-semibold px-2 py-0.5 rounded border ${subjectBadgeClass}">
+                    ${task.subject}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Delete Button -->
+            <button 
+              type="button" 
+              data-id="${task.id}" 
+              class="delete-task-btn text-slate-400 hover:text-red-600 p-2 rounded-lg hover:bg-red-50 transition-colors shrink-0" 
+              title="Delete task"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+              </svg>
+            </button>
+          `;
+
+          taskList.appendChild(taskItem);
+        });
+
+        // Attach event listeners to toggle and delete buttons
+        document.querySelectorAll('.toggle-task-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const taskId = e.currentTarget.getAttribute('data-id');
+            toggleTask(taskId);
+          });
+        });
+
+        document.querySelectorAll('.delete-task-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const taskId = e.currentTarget.getAttribute('data-id');
+            deleteTask(taskId);
+          });
+        });
+
+        updateTaskCounter();
+      }
+
+      // Add a new study task
+      function addTask() {
+        const textValue = taskInput.value.trim();
+        const subjectValue = subjectSelect.value;
+
+        // Form validation: Task text cannot be empty
+        if (!textValue) {
+          showFormAlert("Please enter a study task name before clicking Add.");
+          taskInput.focus();
+          return;
+        }
+
+        const newTask = {
+          id: Date.now().toString(), // Unique ID using timestamp
+          text: textValue,
+          subject: subjectValue,
+          completed: false
+        };
+
+        tasks.unshift(newTask); // Add to beginning of array
+        saveTasks();
+        renderTasks();
+
+        // Reset input field and focus
+        taskInput.value = '';
+        taskInput.focus();
+      }
+
+      // Toggle completed status of task
+      function toggleTask(id) {
+        tasks = tasks.map(task => {
+          if (task.id === id) {
+            return { ...task, completed: !task.completed };
+          }
+          return task;
+        });
+        saveTasks();
+        renderTasks();
+      }
+
+      // Delete task from array
+      function deleteTask(id) {
+        tasks = tasks.filter(task => task.id !== id);
+        saveTasks();
+        renderTasks();
+      }
+
+      // Clear all completed tasks
+      clearCompletedBtn.addEventListener('click', () => {
+        const initialCount = tasks.length;
+        tasks = tasks.filter(task => !task.completed);
+        if (tasks.length < initialCount) {
+          saveTasks();
+          renderTasks();
+        }
+      });
+
+      // Event listener for Add Task button and Enter key
+      addTaskBtn.addEventListener('click', addTask);
+      taskInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          addTask();
+        }
+      });
+
+      // Initial render on page load
+      renderTasks();
+      updateTimerDisplay();
+
+    });
+  </script>
+
+</body>
+</html>
